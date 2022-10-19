@@ -12,6 +12,6 @@ package com.mycompany.sistema.de.acceso;
 public class SistemaDeAcceso {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
     }
 }
