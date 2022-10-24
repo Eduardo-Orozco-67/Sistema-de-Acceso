@@ -7,7 +7,7 @@ package com.mycompany.sistema.de.acceso;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Jose Eduardo Orozco Cardenas <eduardo.orozco66@unach.mx>
  */
 public class SistemaDeAcceso {
 
