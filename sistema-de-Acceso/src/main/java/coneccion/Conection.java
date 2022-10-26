@@ -4,31 +4,25 @@
  */
 package coneccion;
 
+import Metodos.Setters_getters;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Jose Eduardo Orozco Cardenas <eduardo.orozco66@unach.mx>
- */
 public class Conection {
-
     
     Connection con = null;
-    String user="postgres";
-    String password="12345";
-    public Boolean ban = false;
-    
+    Setters_getters gst = new Setters_getters();
+    public Boolean ban = false;    
 
     //variables para guardar los datos de acceso a la bd
-    private final String url = "jdbc:postgresql://localhost:5432/aseguradora";
+    private final String url = "jdbc:postgresql://localhost:5432/sistema_acceso";
 
     //metodo para conectar la bd, es una clase de tipo Connection 
     public Connection conectar() {
         try {
             //manejo del Driver
             Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url,Setters_getters.getUsuario(), Setters_getters.getContra());
             System.out.println("BD CONECTADA");
             ban = true;
         } catch (ClassNotFoundException | SQLException e) {
