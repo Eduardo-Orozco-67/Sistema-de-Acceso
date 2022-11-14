@@ -68,10 +68,10 @@ public class Gestion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel3 = new fondo_panel();
-        btn_ctrlhr1 = new javax.swing.JButton();
-        btn_ctrlalum1 = new javax.swing.JButton();
         contenedor = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        customButtons3 = new EVD1.CustomButtons();
+        customButtons2 = new EVD1.CustomButtons();
+        customButtons1 = new EVD1.CustomButtons();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,22 +79,6 @@ public class Gestion extends javax.swing.JFrame {
         jPanel3.setMinimumSize(new java.awt.Dimension(850, 500));
         jPanel3.setPreferredSize(new java.awt.Dimension(850, 500));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_ctrlhr1.setIcon(ichorarios);
-        btn_ctrlhr1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ctrlhr1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_ctrlhr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 49, 46));
-
-        btn_ctrlalum1.setIcon(icalumno);
-        btn_ctrlalum1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ctrlalum1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_ctrlalum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 49, 45));
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
@@ -109,33 +93,56 @@ public class Gestion extends javax.swing.JFrame {
 
         jPanel3.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 800, 500));
 
-        jButton1.setIcon(inicio);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        customButtons3.setIcon(icalumno);
+        customButtons3.setName(""); // NOI18N
+        customButtons3.setRippleColor(new java.awt.Color(51, 51, 51));
+        customButtons3.setSelected(true);
+        customButtons3.setShadowColor(new java.awt.Color(255, 255, 255));
+        customButtons3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                customButtons3ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 42));
+        jPanel3.add(customButtons3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 50, 50));
+
+        customButtons2.setIcon(ichorarios);
+        customButtons2.setRippleColor(new java.awt.Color(51, 51, 51));
+        customButtons2.setShadowColor(new java.awt.Color(255, 255, 255));
+        customButtons2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customButtons2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(customButtons2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 50, 50));
+
+        customButtons1.setIcon(inicio);
+        customButtons1.setRippleColor(new java.awt.Color(51, 51, 51));
+        customButtons1.setShadowColor(new java.awt.Color(255, 255, 255));
+        customButtons1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customButtons1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(customButtons1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 50));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_ctrlalum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ctrlalum1ActionPerformed
+    private void customButtons3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButtons3ActionPerformed
         // TODO add your handling code here:
         Gestion_usuarios gu = new Gestion_usuarios();
         gu.setSize (800,500);
         gu.setLocation (0,0);
-        
+
         contenedor.removeAll();;
         contenedor.add (gu, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
-    }//GEN-LAST:event_btn_ctrlalum1ActionPerformed
+    }//GEN-LAST:event_customButtons3ActionPerformed
 
-    private void btn_ctrlhr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ctrlhr1ActionPerformed
-        // TODO add your handling code here:
+    private void customButtons2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButtons2ActionPerformed
         Gestion_horarios gh = new Gestion_horarios();
         gh.setSize (800,500);
         gh.setLocation (0,0);
@@ -143,23 +150,21 @@ public class Gestion extends javax.swing.JFrame {
         contenedor.removeAll();;
         contenedor.add (gh, BorderLayout.CENTER);
         contenedor.revalidate();
-        contenedor.repaint();
-    }//GEN-LAST:event_btn_ctrlhr1ActionPerformed
+        contenedor.repaint();        // TODO add your handling code here:
+    }//GEN-LAST:event_customButtons2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void customButtons1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButtons1ActionPerformed
         // TODO add your handling code here:
         ig.setSize (800,500);
         ig.setLocation (0,0);
-        
+
         contenedor.removeAll();;
         contenedor.add (ig, BorderLayout.CENTER);
         contenedor.revalidate();
-        contenedor.repaint();       
-    }//GEN-LAST:event_jButton1ActionPerformed
+        contenedor.repaint();
+    }//GEN-LAST:event_customButtons1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -193,10 +198,10 @@ public class Gestion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_ctrlalum1;
-    private javax.swing.JButton btn_ctrlhr1;
     private javax.swing.JPanel contenedor;
-    private javax.swing.JButton jButton1;
+    private EVD1.CustomButtons customButtons1;
+    private EVD1.CustomButtons customButtons2;
+    private EVD1.CustomButtons customButtons3;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

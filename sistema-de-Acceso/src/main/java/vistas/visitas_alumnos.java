@@ -5,13 +5,18 @@
  */
 package vistas;
 
-import Funciones.Seleccionar;
 import coneccion.Conection;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,7 +28,6 @@ public class visitas_alumnos extends javax.swing.JPanel {
      * Creates new form visitas_alumnos
      */
     
-    Seleccionar select;
     Connection c;
     int contador = 0;
     
@@ -46,8 +50,7 @@ public class visitas_alumnos extends javax.swing.JPanel {
         }        
     }
     
-    fondo2 fondosec = new fondo2();
-    
+    fondo2 fondosec = new fondo2();    
     class fondo2 extends JPanel
     {
         private Image imagen;
@@ -61,23 +64,6 @@ public class visitas_alumnos extends javax.swing.JPanel {
         }        
     }
     
-    public void limpiar_profesorelim(){
-        combo_matricula.removeAllItems();
-        combo_matricula.addItem("Seleccione");
-        c = new Conection().conectar();
-        String []barras = select.matricula_alumno();
-        
-        for(String i:barras){
-            combo_matricula.addItem(i);
-            contador++;
-        }
-        
-        laboratorio.setText("");
-        hora.setText("");
-        fecha.setText("");
-    }
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,18 +74,43 @@ public class visitas_alumnos extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel12 = new fondo_panel();
-        jTabbedPane10 = new javax.swing.JTabbedPane();
+        materialTabbed1 = new EVD1.MaterialTabbed();
         jPanel6 = new fondo2();
-        combo_matricula = new javax.swing.JComboBox<>();
-        laboratorio = new javax.swing.JTextField();
-        hora = new javax.swing.JTextField();
-        fecha = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        visitas_alumnos = new javax.swing.JTable();
+        matricula = new EVD1.TextField();
+        btn_seleccionar = new EVD1.CustomButtons();
 
-        jTabbedPane10.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 14)); // NOI18N
+        materialTabbed1.setBackground(new java.awt.Color(255, 255, 255));
+        materialTabbed1.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 14)); // NOI18N
 
-        combo_matricula.addActionListener(new java.awt.event.ActionListener() {
+        visitas_alumnos.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 12)); // NOI18N
+        visitas_alumnos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Laboratorio", "Hora", "Fecha", "Estado visita"
+            }
+        ));
+        jScrollPane1.setViewportView(visitas_alumnos);
+
+        matricula.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 12)); // NOI18N
+        matricula.setLabelText("MATRICULA");
+
+        btn_seleccionar.setBackground(new java.awt.Color(51, 51, 51));
+        btn_seleccionar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_seleccionar.setText("SELECCIONAR");
+        btn_seleccionar.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 14)); // NOI18N
+        btn_seleccionar.setRippleColor(new java.awt.Color(204, 204, 204));
+        btn_seleccionar.setSelected(true);
+        btn_seleccionar.setShadowColor(new java.awt.Color(204, 204, 204));
+        btn_seleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_matriculaActionPerformed(evt);
+                btn_seleccionarActionPerformed(evt);
             }
         });
 
@@ -108,45 +119,39 @@ public class visitas_alumnos extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(combo_matricula, 0, 123, Short.MAX_VALUE)
-                    .addComponent(laboratorio)
-                    .addComponent(hora)
-                    .addComponent(fecha))
-                .addContainerGap(496, Short.MAX_VALUE))
+                .addGap(210, 210, 210)
+                .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 146, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(combo_matricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(laboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addGap(70, 70, 70)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jTabbedPane10.addTab("SELECCIONAR", jPanel6);
+        materialTabbed1.addTab("SELECCIONAR", jPanel6);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jTabbedPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(materialTabbed1, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jTabbedPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addComponent(materialTabbed1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -161,37 +166,55 @@ public class visitas_alumnos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combo_matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_matriculaActionPerformed
-        // TODO add your handling code here:
-//        try{                       
-//            String plaza = combo_mostrar.getSelectedItem().toString();
-//        if(plaza.equals("Seleccione")){
-//            //c = new Conecction().conectar();
-//            txt_nomp.setText("");
-//            txt_patp.setText("");
-//            txt_matp.setText("");
-//        } else {
-//            c = new Conection().conectar();
-//            String datos [] = select.profesor_plazabusq(plaza);
-//            txt_nomp.setText(datos[0]);
-//            txt_patp.setText(datos[1]);
-//            txt_matp.setText(datos[2]);
-//            }
-//        }catch(Exception x){
-//            
-//        }
-        
-        
-    }//GEN-LAST:event_combo_matriculaActionPerformed
+    private void btn_seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_seleccionarActionPerformed
+        if (!matricula.getText().equals("")) {
+            try {
+                DefaultTableModel modelado = new DefaultTableModel();
+                visitas_alumnos.setModel(modelado);
+                //Agregar tres variables
+                PreparedStatement ps;
+                ResultSet rs;
+                //Connection con= getConection();
+                c = new Conection().conectar();
+                String sql = "select v.id_visitas as Visita, dh.cns_deth as Numero_horario, hv.hora_inicial as Hora_inicial, hv.hora_final as Hora_final from alumnos as a inner join visitas as v on a.id_alumno = v.id_alumno \n" +
+                "                                                                inner join historial_visita as hv on v.id_visitas = hv.id_visitas\n" +
+                "                                                                inner join detalle_horario as dh on hv.cns_deth = dh.cns_deth where a.matricula like '%" + matricula.getText() + "%';";
+                ps = c.prepareStatement(sql);
+                rs = ps.executeQuery();
+
+                ResultSetMetaData rsMetaD = rs.getMetaData();
+                int cant_columnas = rsMetaD.getColumnCount();
+
+                modelado.addColumn("Visita");
+                modelado.addColumn("Numero horario");
+                modelado.addColumn("Hora inicial");
+                modelado.addColumn("Hora final");
+
+                while (rs.next()) {
+                    Object[] filas = new Object[cant_columnas];
+
+                    for (int i = 0; i < cant_columnas; i++) {
+                        filas[i] = rs.getObject(i + 1);
+
+                    }
+                    modelado.addRow(filas);
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Inserte una matricula");
+        }
+    }//GEN-LAST:event_btn_seleccionarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> combo_matricula;
-    private javax.swing.JTextField fecha;
-    private javax.swing.JTextField hora;
+    private EVD1.CustomButtons btn_seleccionar;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTabbedPane jTabbedPane10;
-    private javax.swing.JTextField laboratorio;
+    private javax.swing.JScrollPane jScrollPane1;
+    private EVD1.MaterialTabbed materialTabbed1;
+    private EVD1.TextField matricula;
+    private javax.swing.JTable visitas_alumnos;
     // End of variables declaration//GEN-END:variables
 }
