@@ -80,6 +80,7 @@ public class Gestion_usuarios extends javax.swing.JPanel {
         contenedor3 = new fondo2();
 
         jButton1.setIcon(icalumno);
+        jButton1.setToolTipText("Alumnos");
 
         jButton2.setIcon(icvisitas_alumno);
         jButton2.addActionListener(new java.awt.event.ActionListener() {

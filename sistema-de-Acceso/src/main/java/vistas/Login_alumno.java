@@ -27,6 +27,8 @@ public class Login_alumno extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
+    foraneo foraneo = new foraneo();
+    
     fondo_panel fondo = new fondo_panel();
     class fondo_panel extends JPanel
     {
@@ -132,6 +134,7 @@ public class Login_alumno extends javax.swing.JFrame {
     private void btn_escanerforaneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_escanerforaneoActionPerformed
         // TODO add your handling code here: ACCION FORANEO
         
+        
     }//GEN-LAST:event_btn_escanerforaneoActionPerformed
 
     private void btn_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alumnoActionPerformed
@@ -141,6 +144,8 @@ public class Login_alumno extends javax.swing.JFrame {
 
     private void btn_foraneo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_foraneo1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        foraneo.setVisible(true);
     }//GEN-LAST:event_btn_foraneo1ActionPerformed
 
     /**

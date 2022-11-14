@@ -16,6 +16,8 @@ public class Conection {
 
     //variables para guardar los datos de acceso a la bd
     private final String url = "jdbc:postgresql://localhost:5432/sistema_acceso";
+    private final String u_foraneo="foraneo";
+    private final String ps_foraneo="foraneo";
 
     //metodo para conectar la bd, es una clase de tipo Connection 
     public Connection conectar() {
@@ -23,6 +25,23 @@ public class Conection {
             //manejo del Driver
             Class.forName("org.postgresql.Driver");
             con = DriverManager.getConnection(url,Setters_getters.getUsuario(), Setters_getters.getContra());
+            System.out.println("BD CONECTADA");
+            ban = true;
+        } catch (ClassNotFoundException | SQLException e) {
+            //excepcion sql
+            JOptionPane.showMessageDialog(null, "Error en su conexion ", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e);
+            ban = false;
+
+        }
+        return con;
+    }
+    
+    public Connection conectar_foraneo() {
+        try {
+            //manejo del Driver
+            Class.forName("org.postgresql.Driver");
+            con = DriverManager.getConnection(url,u_foraneo,ps_foraneo);
             System.out.println("BD CONECTADA");
             ban = true;
         } catch (ClassNotFoundException | SQLException e) {
