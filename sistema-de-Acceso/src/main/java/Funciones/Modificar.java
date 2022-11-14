@@ -12,10 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Emili
- */
+
 public class Modificar {
     
     Connection conexion;
@@ -26,7 +23,7 @@ public class Modificar {
     public Modificar(){
         conexion=c.conectar();
     }
-    
+
     
 //    public void modificar_profesor(String nombre_p, String ap_pat, String ap_mat, String num_plaza){
 //        try
@@ -71,5 +68,23 @@ public class Modificar {
             JOptionPane.showMessageDialog(null, "Error al actualizar " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+/// PEDRO OCTAVIO CULEBRO PRADO
+        
+        
+public void modificar_admin(String nom_admin, String ap_pat, String ap_mat, String combo)
+      {
+        try
+        {
+            st=conexion.createStatement();
+            String sql ="update administrativo set nombre_admin = '"+nom_admin+"', ap_pat = '"+ap_pat+"' , ap_mat = '"+ap_mat+"'  where id_admin = '"+combo+"';";//Sentencia sql
+            st.execute(sql);
+            st.close();
+            JOptionPane.showMessageDialog(null, "Modificacion exitosa");
+            
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+      } 
 }

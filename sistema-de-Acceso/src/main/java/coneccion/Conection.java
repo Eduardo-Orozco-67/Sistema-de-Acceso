@@ -12,7 +12,9 @@ public class Conection {
     
     Connection con = null;
     Setters_getters gst = new Setters_getters();
-    public Boolean ban = false;    
+    public Boolean ban = false;
+    private final String usuario = "alumno";
+    private final String contraseña = "alumno";    
 
     //variables para guardar los datos de acceso a la bd
     private final String url = "jdbc:postgresql://localhost:5432/sistema_acceso";
@@ -23,6 +25,23 @@ public class Conection {
             //manejo del Driver
             Class.forName("org.postgresql.Driver");
             con = DriverManager.getConnection(url,Setters_getters.getUsuario(), Setters_getters.getContra());
+            System.out.println("BD CONECTADA");
+            ban = true;
+        } catch (ClassNotFoundException | SQLException e) {
+            //excepcion sql
+            JOptionPane.showMessageDialog(null, "Error en su conexion ", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e);
+            ban = false;
+
+        }
+        return con;
+    }
+    
+    public Connection conectar_alumno() {
+        try {
+            //manejo del Driver
+            Class.forName("org.postgresql.Driver");
+            con = DriverManager.getConnection(url, usuario, contraseña);
             System.out.println("BD CONECTADA");
             ban = true;
         } catch (ClassNotFoundException | SQLException e) {

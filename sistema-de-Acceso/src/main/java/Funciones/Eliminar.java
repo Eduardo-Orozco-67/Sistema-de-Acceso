@@ -34,5 +34,36 @@ public class Eliminar {
             JOptionPane.showMessageDialog(null, "Error al eliminar");
         }
     }
+     
+    /// PEDRO OCTAVIO CULEBRO PRADO
+    
+    
+    public void eliminar_materia(String nom_materia)
+    {
+        try{
+            Connection conexiion = c.conectar();
+            st=conexiion.createStatement();
+            String sql= "Delete from materias where nom_materia = '"+nom_materia+"' ";
+            st.execute(sql);
+            st.close();
+            JOptionPane.showMessageDialog(null, "Registro eliminado");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "ELIMINACIÓN FALLIDA");
+        }
+    }
+    
+        public void eliminar_admin(String id_admin)
+    {
+        try{
+            Connection conexiion = c.conectar();
+            st=conexiion.createStatement();
+            String sql= "Delete from administrativo where id_admin = "+id_admin+" ";
+            st.execute(sql);
+            st.close();
+            JOptionPane.showMessageDialog(null, "ELIMINACIÓN EXITOSA");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "ELIMINACIÓN FALLIDA");
+        }
+    }
     
 }
